@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegram-gemini-bot
+  labels:
+    app: telegram-gemini-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telegram-gemini-bot
+  template:
+    metadata:
+      labels:
+        app: telegram-gemini-bot
+    spec:
+      containers:
+        - name: bot
+          image: your-dockerhub-username/telegram-gemini-bot:latest
+          ports:
+            - containerPort: 8443
+          env:
+            - name: TELEGRAM_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-gemini-secrets
+                  key: TELEGRAM_TOKEN
+            - name: GEMINI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-gemini-secrets
+                  key: GEMINI_API_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: telegram-gemini-bot-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: telegram-gemini-bot
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8443

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: telegram-gemini-bot
+description: A Telegram bot powered by Google Gemini (gemini-pro)
+type: application
+version: 0.1.0
+appVersion: "1.0"

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "telegram-gemini-bot.fullname" . }}
+  labels:
+    app: {{ include "telegram-gemini-bot.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "telegram-gemini-bot.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "telegram-gemini-bot.name" . }}
+    spec:
+      containers:
+        - name: telegram-gemini-bot
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+          env:
+            - name: TELEGRAM_TOKEN
+              value: {{ .Values.env.TELEGRAM_TOKEN | quote }}
+            - name: GEMINI_API_KEY
+              value: {{ .Values.env.GEMINI_API_KEY | quote }}

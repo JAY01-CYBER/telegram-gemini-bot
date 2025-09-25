@@ -1,0 +1,42 @@
+site_name: Telegram Gemini Bot
+site_description: Deployment & Development Guide for Telegram Gemini Bot
+site_author: Your Name
+repo_url: https://github.com/your-username/telegram-gemini-bot
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.highlight
+    - search.share
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: teal
+    - scheme: slate
+      primary: blue
+      accent: cyan
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.highlight
+    - search.share
+
+nav:
+  - Shortcuts: shortcuts.md
+  - Roadmap: roadmap.md
+  - Home: index.md
+  - Deployment Guide: DEPLOYMENT_GUIDE.md
+  - Architecture: architecture.md
+  - Development: development.md
+
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/your-username/telegram-gemini-bot
+  copyright: "© 2025 Telegram Gemini Bot · Released under the MIT License"

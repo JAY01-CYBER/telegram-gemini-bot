@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  telegram-bot:
+    build: .
+    container_name: telegram-gemini-bot
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8443:8443"

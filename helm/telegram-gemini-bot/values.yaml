@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  repository: your-dockerhub-username/telegram-gemini-bot
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 8443
+
+env:
+  TELEGRAM_TOKEN: "your-telegram-token-here"
+  GEMINI_API_KEY: "your-gemini-api-key-here"
+
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations: {}
+  host: "your-domain.com"
+  tls: true
+  tlsSecret: "telegram-gemini-bot-tls"
+  clusterIssuer: "letsencrypt-prod"
